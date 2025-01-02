@@ -1,0 +1,31 @@
+{% extends "layouts/default_layout.jinja" %}
+{% import "components/shared/recipe_card.jinja" as recipe_card %}
+
+{% block head %}
+	{{ super() }}
+	<title>Index Page</title>
+{% endblock %}
+
+
+{% block contents %}
+<article class="no-elevate round no-padding large page bottom active">
+	<img class="responsive" src="/assets/images/burger.jpeg">
+	<div class="absolute middle center center-align black-text">
+		<h1 class="center-align">Hungry?</h1>
+		<h6>Try a family recipe.</h6>
+		<nav class="center-align">
+			<button class="extra">Browse</button>
+		</nav>
+	</div>
+</article>
+
+<h2>New Recipes</h2>
+<section class="grid">
+	{% for recipe in recipes %}
+	<div class="s12 m6 l4">
+		{{ recipe_card.template() }}
+	</div>
+	{% endfor %}	
+</section>
+
+{% endblock %}

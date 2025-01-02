@@ -1,0 +1,37 @@
+{% import "components/shared/side_nav.jinja" as side_nav %}
+
+<html>
+	<head>
+		{% block head %}
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="google" content="notranslate" />
+		<title>Feed Me!</title>
+		{% endblock %}
+		{% block resources %}
+		<link
+			href="https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="/assets/stylesheets/styles.css" />
+		<link rel="stylesheet" href="/assets/stylesheets/colors.css" />
+		<script
+			type="module"
+			src="https://cdn.jsdelivr.net/npm/beercss@3.8.0/dist/cdn/beer.min.js"
+		></script>
+		<script
+			type="module"
+			src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"
+		></script>
+		{% endblock %}
+	</head>
+	<body>
+		{{ side_nav.template() }}
+		<main class="responsive max">
+			{% block contents %}
+			<p>default template</p>
+			{% endblock %}
+		</main>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+{% macro template() %}
+
+{# Nav Drawer for large screens #}
+<nav class="left drawer l">
+	<header>
+		<nav>
+			<img src="https://www.beercss.com/favicon.png" class="circle">
+			<h6>Feed Me!</h6>
+		</nav>
+	</header>
+	{{ _links() }}
+</nav>
+
+{# Nav Rail for mid screens #}
+<nav class="left m">
+  <header>
+		<img src="https://www.beercss.com/favicon.png" class="circle">
+  </header>
+	{{ _links() }}
+</nav>
+
+{# Top Nav for small screens #}
+<nav class="top s">
+	<button class="transparent circle">
+		<i>menu</i>
+		<menu class="no-wrap medium-width">
+			{{ _links() }}
+		</menu>
+	</button>
+	<div class="large-text">Feed Me!</div>
+	<div class="max"></div>
+	<button class="transparent circle">
+		<img src="https://www.beercss.com/favicon.png">
+	</button>
+</nav>
+
+{% endmacro %}
+
+{% macro _links() %}
+<a class="row">
+	<i>home</i>
+	<div class="max">
+		<div>Home</div>
+	</div>
+</a>
+<a class="row">
+	<i>search</i>
+	<div class="max">
+		<div>Search</div>
+		<label class="s l">Find a Recipe</label>
+	</div>
+</a>
+<a class="row">
+	<i>chat</i>
+	<div class="max">
+		<div>Assistant</div>
+		<label class="s l">Recommend me a recipe</label>
+	</div>
+</a>
+<hr class="medium"/>
+<a class="row">
+	<i>add</i>
+	<div class="max">
+		<div>New</div>
+		<label class="s l">Add a recipe to the book</label>
+	</div>
+</a>
+{% endmacro %}
