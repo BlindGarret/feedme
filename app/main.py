@@ -10,6 +10,7 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
+    print("herp")
     return templates.TemplateResponse(
         request=request,
         name="pages/index.jinja",
