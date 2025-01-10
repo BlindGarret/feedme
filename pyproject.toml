@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.115.6",
     "jinja2>=3.1.5",
+    "psycopg2>=2.9.10",
     "sqlalchemy>=2.0.36",
     "uvicorn>=0.34.0",
 ]
@@ -15,7 +16,14 @@ dependencies = [
 venvPath = "."
 venv = ".venv"
 
+[tool.taskipy.tasks]
+debug = "uv run --env-file='.env' app/debug.py"
+revision = "alembic revision --autogenerate -m"
+migrate = "alembic upgrade head"
+
 [dependency-groups]
 dev = [
+    "alembic>=1.14.0",
     "debugpy>=1.8.11",
+    "taskipy>=1.14.1",
 ]
