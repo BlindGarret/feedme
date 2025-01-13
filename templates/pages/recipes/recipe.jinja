@@ -1,0 +1,12 @@
+{% extends "layouts/default_layout.jinja" %}
+
+{% block title %}
+	<title>Recipe: {{ recipe.name }}</title>
+{% endblock %}
+
+
+{% block contents %}
+<article class="no-elevate round no-padding large page bottom active">
+		<h1 class="center-align">{{ recipe.id }}</h1>
+</article>
+{% endblock %}

@@ -1,0 +1,16 @@
+<div class="overlay blur active create-recipe-modal"
+	hx-on:click="$('.create-recipe-modal').remove()"></div>
+<dialog class="active create-recipe-modal">
+  <h5>Create Recipe</h5>
+  <div>Please name the recipe.</div>
+	<form>
+		<div class="field border">
+			<input type="text" required>
+			<label>Recipe Name</label>
+		</div>
+		<nav class="right-align no-space">
+    	<button class="transparent link" hx-on:click="$('.create-recipe-modal').remove()">Cancel</button>
+    	<button type="submit" class="transparent link" hx-post="/index/create-recipe">Confirm</button>
+  	</nav>
+	</form>
+</dialog>

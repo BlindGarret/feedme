@@ -37,7 +37,7 @@
 {% endmacro %}
 
 {% macro _links() %}
-<a class="row">
+<a class="row" href="/">
 	<i>home</i>
 	<div class="max">
 		<div>Home</div>
@@ -58,7 +58,7 @@
 	</div>
 </a>
 <hr class="medium"/>
-<a class="row">
+<a class="row" hx-get="/index/create-recipe-modal" hx-target="body" hx-swap="beforeend">
 	<i>add</i>
 	<div class="max">
 		<div>New</div>
