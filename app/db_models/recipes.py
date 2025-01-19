@@ -22,6 +22,13 @@ from sqlalchemy.orm import (
 from .base import RecipeDataBase
 from .tags import RecipeTag
 
+tag_association_table = Table(
+    "recipe_tag_links",
+    RecipeDataBase.metadata,
+    Column("recipe_id", ForeignKey("recipes.id")),
+    Column("tag_id", ForeignKey("recipe_tags.id")),
+)
+
 
 class RecipeCategory(enum.Enum):
     breakfast = "breakfast"
@@ -61,7 +68,7 @@ class Recipe(RecipeDataBase):
         server_default="other",
     )
     tags: Mapped[List[RecipeTag]] = relationship(
-        "RecipeTag", secondary="recipe_tag_links"
+        "RecipeTag", secondary=tag_association_table, backref="Recipe"
     )
     rating: Mapped[int] = mapped_column(
         SmallInteger,
@@ -114,11 +121,3 @@ class Recipe(RecipeDataBase):
                 self.image_url,
             )
         )
-
-
-tag_association_table = Table(
-    "recipe_tag_links",
-    RecipeDataBase.metadata,
-    Column("recipe_id", ForeignKey("recipes.id")),
-    Column("tag_id", ForeignKey("recipe_tags.id")),
-)

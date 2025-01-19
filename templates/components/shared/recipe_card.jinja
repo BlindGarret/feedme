@@ -1,11 +1,15 @@
-{% macro template() %}
+{% macro template(recipe) %}
 <article class="no-padding">
+	{% if recipe.image_url %}
+  <img class="responsive large" src="{{ recipe.image_url }}">
+	{% else %}
   <img class="responsive large" src="/assets/images/default_meal.jpeg">
-  <div class="padding">
-    <h5>Meal Name</h5>
-    <p class="recipe-card-text-container">Meal description will be found here. ihrihqiw qiohdoqw ihqdqdwqodw ojoqwd.</p>
+	{% endif %}
+	<div class="padding">
+    <h5>{{ recipe.name }}</h5>
+    <p class="recipe-card-text-container">{{ recipe.description }}</p>
     <nav>
-      <button>View</button>
+			<a href="/recipes/{{recipe.id}}" class="button">View</a>
     </nav>
   </div>
 </article>

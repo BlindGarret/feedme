@@ -17,7 +17,7 @@
 <section class="grid">
 	{% for recipe in recipes %}
 	<div class="s12 m6 l4">
-		{{ recipe_card.template() }}
+		{{ recipe_card.template(recipe) }}
 	</div>
 	{% endfor %}	
 </section>

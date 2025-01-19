@@ -1,9 +1,8 @@
-"""schema setup
+"""create schema
 
-Revision ID: 80e02e4bcf23
-Revises:
-Create Date: 2025-01-09 23:31:40.398433
-
+Revision ID: 5310fb7c65c6
+Revises: 68ae39a9e5ed
+Create Date: 2025-01-19 01:02:30.231111
 """
 
 from typing import Sequence, Union
@@ -12,7 +11,7 @@ from alembic import op
 
 
 # revision identifiers, used by Alembic.
-revision: str = "80e02e4bcf23"
+revision: str = "5310fb7c65c6"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None

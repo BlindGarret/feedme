@@ -5,12 +5,12 @@
   <div>Please name the recipe.</div>
 	<form>
 		<div class="field border">
-			<input type="text" required>
+			<input name="name" type="text" required>
 			<label>Recipe Name</label>
 		</div>
 		<nav class="right-align no-space">
     	<button class="transparent link" hx-on:click="$('.create-recipe-modal').remove()">Cancel</button>
-    	<button type="submit" class="transparent link" hx-post="/index/create-recipe">Confirm</button>
+    	<button class="transparent link" hx-post="/index/create-recipe" hx-ext="json-enc">Confirm</button>
   	</nav>
 	</form>
 </dialog>
