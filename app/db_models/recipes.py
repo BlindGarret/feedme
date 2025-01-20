@@ -1,12 +1,12 @@
+import enum
 from datetime import datetime
 from typing import List
-import enum
 
 from sqlalchemy import (
     CheckConstraint,
     Column,
-    Enum,
     DateTime,
+    Enum,
     ForeignKey,
     SmallInteger,
     String,

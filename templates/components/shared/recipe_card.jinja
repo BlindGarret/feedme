@@ -1,9 +1,9 @@
 {% macro template(recipe) %}
 <article class="no-padding">
 	{% if recipe.image_url %}
-  <img class="responsive large" src="{{ recipe.image_url }}">
+  <img class="responsive large" src="{{ recipe.image_url }}" alt="{{ recipe.name }} image">
 	{% else %}
-  <img class="responsive large" src="/assets/images/default_meal.jpeg">
+  <img class="responsive large" src="/assets/images/default_meal.jpeg" alt="no image saved">
 	{% endif %}
 	<div class="padding">
     <h5>{{ recipe.name }}</h5>

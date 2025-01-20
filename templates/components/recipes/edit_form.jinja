@@ -1,0 +1,61 @@
+{% macro template(recipe) %}
+<form id="edit-recipe-form">
+	<div class="grid small-margin">
+		
+		<div class="s12">
+			<h3 class="primary-text">Edit Recipe</h3>
+			<hr />
+		</div>
+
+		<!-- Name/Description -->
+		<div class="s12 center middle">
+			
+			<div class="field label border">
+				<input name="name" type="text" value="{{ recipe.name }}" autocomplete="off" required minlength="1">
+				<label>Recipe Name</label>
+			</div>
+
+			<div class="edit-recipe-image-area">
+				<div class="absolute middle center edit-recipe-image-button-container" style="z-index: 1000;">
+					{% if recipe.image_url %}
+					<button hx-delete="/partials/recipes/{{ recipe.id }}/delete-image" hx-target="#edit-recipe-form">
+						<i>delete</i>
+					</button>
+					{% endif %}
+					<button hx-get="/partials/recipes/{{ recipe.id }}/upload-image-modal" hx-target="body" hx-swap="beforeend">
+						<i>upload</i>
+					</button>
+				</div>
+				{% if recipe.image_url %}
+				<img class="responsive large" src="{{ recipe.image_url }}" alt="{{ recipe.name }} image">
+				{% else %}
+				<img class="responsive large" src="/assets/images/default_meal.jpeg" alt="no image saved">
+				{% endif %}
+			</div>
+
+			<div class="field textarea label extra border">
+				<textarea name="description" autocomplete="off">{{ recipe.description }}</textarea>
+				<label>Description</label>
+			</div>
+			<hr />
+		</div>
+	
+		<!-- Metadata -->
+		<div class="s12">
+			<div class="field label extra border">
+				<input type="text">
+				<label>Something</label>
+			</div>
+
+		</div>
+
+		<div class="s12">
+			<nav class="right-align no-space">
+				<a href="/recipes/{{recipe.id}}" class="button transparent link">Cancel</a>
+				<button class="transparent link" hx-patch="/partials/recipes/{{ recipe.id }}/save" hx-target="#edit-recipe-form">Save</button>
+			</nav>
+
+		</div>
+	</div>
+</form>
+{% endmacro %}

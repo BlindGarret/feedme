@@ -1,0 +1,33 @@
+<div class="overlay blur active image-upload-modal"
+	hx-on:click="$('.image-upload-modal').remove()"></div>
+<dialog class="active image-upload-modal">
+  <h5>Upload Recipe Image</h5>
+	<form id='upload-image-form' hx-encoding='multipart/form-data' hx-post='/partials/recipes/{{ recipe_id }}/replace-image'>
+  	<div id="drop-area" class="medium-height large-width responsive padding border">
+			<div class="absolute center middle">
+				<p>Upload a file with the file dialog or by dragging and dropping image onto the dashed region</p>
+				<input type="file" id="upload-image-file-elem" accept="image/jpeg" onchange="handleFiles(this.files)">
+				<label class="button responsive" for="upload-image-file-elem">Select a file</label>
+			<div>
+		</div>
+	</form>
+	<script>
+			htmx.on('#upload-image-form', 'htmx:xhr:progress', function(evt) {
+				htmx.find('#upload-image-progress').setAttribute('value', evt.detail.loaded/evt.detail.total * 100)
+			});
+	</script>
+	<nav class="right-align no-space">
+		<button class="transparent link" hx-on:click="$('.image-upload-modal').remove()">Cancel</button>
+	</nav>
+	<style>
+		#drop-area {
+			border-style: dashed;
+		}
+		#drop-area.highlight {
+			border-color: purple;
+		}
+		#upload-image-file-elem {
+			display: none;
+		}
+	</style>
+</dialog>

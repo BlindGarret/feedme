@@ -17,7 +17,7 @@ venvPath = "."
 venv = ".venv"
 
 [tool.taskipy.tasks]
-debug = "uv run --env-file='.env' app/debug.py"
+dev = "uv run --env-file='.env' app/debug.py"
 revision = "alembic revision --autogenerate -m"
 migrate = "alembic upgrade head"
 

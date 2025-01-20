@@ -1,6 +1,6 @@
 # just a debug wrapper for the app to make it easier to debug in nvim
-import uvicorn
 import debugpy
+import uvicorn
 
 if __name__ == "__main__":
     debugpy.listen(("localhost", 5678))

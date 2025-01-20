@@ -5,10 +5,17 @@
 }
 
 .recipe-card-text-container {
-
 	display: -webkit-box;
 	height: calc(1.5rem * 4);
 	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+}
+
+.edit-recipe-image-button-container {
+	opacity: 0;
+}
+
+.edit-recipe-image-area:hover .edit-recipe-image-button-container {
+	opacity: 1;
 }
