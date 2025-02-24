@@ -1,13 +1,16 @@
+import os
+import uuid
 from typing import Annotated
 
-from db_models import Recipe, get_engine
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from patching import patch_instance
-from services.templating import get_templates
 from sqlalchemy import Engine
 from sqlalchemy.orm import Session
+
+from app.db_models import Recipe, get_engine
+from app.patching import patch_instance
+from app.services.templating import get_templates
 
 router = APIRouter()
 
@@ -43,6 +46,35 @@ async def save_recipe(
         if recipe is None:
             raise HTTPException(status_code=404, detail="Recipe not found")
         patch_instance(recipe, form)
+        session.commit()
+        return templates.TemplateResponse(
+            request=request,
+            name="/partials/recipes/save.jinja",
+            context={
+                "recipe": recipe,
+            },
+        )
+
+
+@router.post("/partials/recipes/{recipe_id}/replace_image")
+async def replace_image(
+    request: Request,
+    recipe_id: int,
+    file: UploadFile,
+    engine: Annotated[Engine, Depends(get_engine)],
+    templates: Annotated[Jinja2Templates, Depends(get_templates)],
+):
+    img_dir = os.getenv("IMG_DIR")
+    image_name = (
+        f"{uuid.uuid4().hex}.{os.path.splitext(file.filename or 'none.jpg')[1]}"
+    )
+    with Session(engine) as session:
+        recipe = session.query(Recipe).filter(Recipe.id == recipe_id).one_or_none()
+        if recipe is None:
+            raise HTTPException(status_code=404, detail="Recipe not found")
+        with open(f"{img_dir}/{image_name}", "wb") as f:
+            f.write(await file.read())
+
         session.commit()
         return templates.TemplateResponse(
             request=request,

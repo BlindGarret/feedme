@@ -1,13 +1,14 @@
 from typing import Annotated
 
-from db_models import Recipe, get_engine
-from dtos.recipes import CreateRecipeRequest
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from services.templating import get_templates
 from sqlalchemy import Engine
 from sqlalchemy.orm import Session
+
+from app.db_models import Recipe, get_engine
+from app.dtos.recipes import CreateRecipeRequest
+from app.services.templating import get_templates
 
 router = APIRouter()
 
